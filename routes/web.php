@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Job;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,54 +16,9 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::get('/jobs', function () {
-
-    return view('jobs', [ 'jobs' => [
-        [
-            'id' => 1,
-            'title' => 'Director',
-            'salary' => '$50,000'
-        ],
-        [
-            'id' => 2,
-            'title' => 'Programmer',
-            'salary' => '$10,000'
-        ],
-        [
-            'id' => 3,
-            'title' => 'Teacher',
-            'salary' => '$40,000'
-        ]
-    ]]);
+    return view('jobs', [ 'jobs' => Job::all() ]);
 })->name('jobs');
 
 Route::get('/job/{id}', function ($id) {
-    $jobs = [
-        [
-            'id' => 1,
-            'title' => 'Director',
-            'salary' => '$50,000'
-        ],
-        [
-            'id' => 2,
-            'title' => 'Programmer',
-            'salary' => '$10,000'
-        ],
-        [
-            'id' => 3,
-            'title' => 'Teacher',
-            'salary' => '$40,000'
-        ]
-    ];
-
-    $job = Arr::first($jobs, fn($job) => $job['id'] == $id);
-
-    return view('job', [ 'job' => $job ]);
+    return view('job', [ 'job' => Job::findById($id) ]);
 })->name('job');
-
-/*  
-    New jobs route, 
-    return jobs listing, 
-    map thru them, 
-    make each job an a tag that redirects to specific job route,
-    return job by id
-*/

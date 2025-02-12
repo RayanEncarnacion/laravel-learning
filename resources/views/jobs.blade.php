@@ -1,4 +1,5 @@
 <x-layout>
+    <x-slot:title>Jobs</x-slot:title>
     <x-slot:heading>Jobs Listing</x-slot:heading>
 
     <ul>

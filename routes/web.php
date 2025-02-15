@@ -16,7 +16,7 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::get('/jobs', function () {
-    return view('jobs', [ 'jobs' => Job::all() ]);
+    return view('jobs', [ 'jobs' => Job::with('employer')->get() ]);
 })->name('jobs');
 
 Route::get('/job/{id}', function ($id) {

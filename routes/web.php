@@ -20,10 +20,25 @@ Route::get('/jobs', function () {
     return view('jobs.index', [ 'jobs' => $paginated_jobs ]);
 })->name('jobs');
 
+Route::post('/jobs', function () {
+    request()->validate([
+        "title" => "required",
+        "salary" => "required"
+    ]);
+
+    Job::create([
+        'title' => request('title'),
+        'salary' => request('salary'),
+        'employer_id' => 1
+    ]);
+
+    return redirect("/jobs");
+})->name('jobs');
+
 Route::get('/jobs/create', function () {
     return view("jobs.create");
 })->name('jobs');
 
 Route::get('/job/{id}', function ($id) {
-    return view('job', [ 'job' => Job::find($id) ]);
+    return view('jobs.show', [ 'job' => Job::find($id) ]);
 })->name('job');

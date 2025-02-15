@@ -16,7 +16,8 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::get('/jobs', function () {
-    return view('jobs', [ 'jobs' => Job::with('employer')->get() ]);
+    $paginated_jobs = Job::with('employer')->simplePaginate(5);
+    return view('jobs', [ 'jobs' => $paginated_jobs ]);
 })->name('jobs');
 
 Route::get('/job/{id}', function ($id) {

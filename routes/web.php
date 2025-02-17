@@ -3,22 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('/');
+Route::get('/', fn () => view('welcome'))->name('/');
+Route::get('/about', fn () => view('about'))->name('about');
+Route::get('/contact', fn () => view('contact'))->name('contact');
 
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
-
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
-
-Route::get('/jobs', function () {
-    $paginated_jobs = Job::latest()->with('employer')->simplePaginate(5);
-    return view('jobs.index', [ 'jobs' => $paginated_jobs ]);
-})->name('jobs');
+Route::get('/jobs', fn () => view('jobs.index', [ 'jobs' => Job::latest()->with('employer')->simplePaginate(5) ]))->name('jobs');
 
 Route::post('/jobs', function () {
     request()->validate([
@@ -35,10 +24,5 @@ Route::post('/jobs', function () {
     return redirect("/jobs");
 })->name('jobs');
 
-Route::get('/jobs/create', function () {
-    return view("jobs.create");
-})->name('jobs');
-
-Route::get('/job/{id}', function ($id) {
-    return view('jobs.show', [ 'job' => Job::find($id) ]);
-})->name('job');
+Route::get('/jobs/create', fn () => view("jobs.create"))->name('jobs');
+Route::get('/job/{id}', fn ($id) => view('jobs.show', [ 'job' => Job::find($id) ]))->name('job');

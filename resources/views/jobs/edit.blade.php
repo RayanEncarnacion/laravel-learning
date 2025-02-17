@@ -2,7 +2,7 @@
     <x-slot:title>Edit job</x-slot:title>
     <x-slot:heading>Edit Job</x-slot:heading>
 
-    <form method="POST" action="/job/{{ $job->id }}">
+    <form method="POST" action="/jobs/{{ $job->id }}">
       @csrf
       @method("PATCH")
 
@@ -57,13 +57,13 @@
             <button form="delete-job-form" type="submit" class="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600">Delete</button>
 
             <div class="mt-4 flex items-center gap-x-4">
-              <a href="/job/{{ $job->id }}" class="rounded-md shadow px-3 py-2 text-sm font-semibold text-gray-600">Cancel</a>
+              <a href="/jobs/{{ $job->id }}" class="rounded-md shadow px-3 py-2 text-sm font-semibold text-gray-600">Cancel</a>
               <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Update</button>
             </div>
         </div> 
     </form>
 
-    <form id="delete-job-form" method="POST" action="/job/{{ $job->id }}">
+    <form id="delete-job-form" method="POST" action="/jobs/{{ $job->id }}">
         @csrf
         @method("DELETE")
     </form>

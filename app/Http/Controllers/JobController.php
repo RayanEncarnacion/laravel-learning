@@ -73,7 +73,7 @@ class JobController extends Controller
             'salary' => request('salary') 
         ]);
     
-        return redirect('/job/' . $job->id);
+        return redirect('/jobs/' . $job->id);
     }
 
     /**

@@ -11,8 +11,8 @@ Route::controller(JobController::class)->group(function () {
     Route::get('/jobs', 'index')->name('jobs');
     Route::get('/jobs/create', 'create')->name('jobs');
     Route::post('/jobs', 'store')->name('jobs');
-    Route::get('/job/{job}', 'show');
-    Route::get('/job/{job}/edit', 'edit');
-    Route::patch('/job/{job}', 'update');
-    Route::delete('/job/{job}', 'destroy');
+    Route::get('/jobs/{job}', 'show');
+    Route::get('/jobs/{job}/edit', 'edit');
+    Route::patch('/jobs/{job}', 'update');
+    Route::delete('/jobs/{job}', 'destroy');
 });

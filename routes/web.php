@@ -4,9 +4,9 @@ use App\Http\Controllers\JobController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
 
-Route::get('/', fn () => view('welcome'))->name('/');
-Route::get('/about', fn () => view('about'))->name('about');
-Route::get('/contact', fn () => view('contact'))->name('contact');
+Route::view("/", 'welcome');
+Route::view("/about", 'about');
+Route::view("/contact", 'contact');
 
 Route::get('/jobs', [JobController::class, 'index'])->name('jobs');
 Route::get('/jobs/create', [JobController::class, 'create'] )->name('jobs');

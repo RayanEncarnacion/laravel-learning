@@ -41,7 +41,7 @@ class JobController extends Controller
             'employer_id' => 1
         ]);
 
-        Mail::to('rayanencbalbuena@gmail.com')->send(
+        Mail::to('rayanencbalbuena@gmail.com')->queue(
             new JobPosted($job)
         );
     
